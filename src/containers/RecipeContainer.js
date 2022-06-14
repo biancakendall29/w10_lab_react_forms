@@ -1,10 +1,6 @@
 import { useState, useRef } from "react";
 import NewRecipe from "../components/NewRecipe";
 import RecipeList from "../components/RecipeList";
-import Recipe from "../components/Recipe";
-
-
-
 
 
 const RecipeContainer = () => {
@@ -35,8 +31,6 @@ const RecipeContainer = () => {
     const inputValueRefCakeIngredients = useRef();
     const inputValueRefCakeRating = useRef();
 
-
-
     const addNewRecipe = () => {
         console.log("Added new recipe");
         const newCakeName = inputValueRefCakeName.current.value;
@@ -54,41 +48,25 @@ const RecipeContainer = () => {
 
     const inputValueRefSearch = useRef();
 
-
     const filterBySearch = () => {
         const searchValue = inputValueRefSearch.current.value;
         console.log(searchValue);
 
         const filteredRecipes = recipes.filter((recipe, index) => recipe.cakeName === searchValue);
-        console.log(filteredRecipes);
-        setRecipes(prevRecipes => [...prevRecipes, { cakeName: filterRecipes.cakeName, ingredients: filterRecipes.ingredients, rating: filterRecipes.rating}])
-        
 
+        if (filteredRecipes.length >= 1) {
+            const filteredCakeName = filteredRecipes[0].cakeName;
+            let filteredIngredients = [];
+            filteredIngredients = filteredRecipes[0].ingredients;
+            const filteredRating = filteredRecipes[0].rating;
 
-        // const recipesMap = recipes.map((recipe, index) => {
-        //     if (recipe.cakeName === searchValue) {
-        //         // document.getElementById("recipes").innerHTML = "";
-        //         return recipes[index];
-        //         // return <Recipe key={index}
-        //         // recipe={recipe}/>
-        //     }
-        //     else {
+            document.getElementById("recipes").innerHTML = "";
 
-        //         return null;
-            
-        //     }
-        // })
-
-        // recipes = recipesMap;
-        // return(<RecipeList recipes/>)
-
-
-        // console.log(recipesMap);
-        // if (recipesMap[0] === undefined) {
-        //     alert("There is no recipe with that name!")
-        // }
-
-
+            setRecipes(prevRecipes => [...prevRecipes, {cakeName: filteredCakeName, ingredients: filteredIngredients, rating: filteredRating}])
+        }
+        else if (filteredRecipes.length === 0) {
+            alert("There are no recipes with that name...");
+        }          
     }
 
     return (
