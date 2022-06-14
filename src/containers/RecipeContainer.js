@@ -75,11 +75,11 @@ const RecipeContainer = () => {
                 <a href="#home"><h1>RECIPES!!</h1></a>
                 <nav id="nav-bar">
                     <ul>
-                        <li><a href="#recipes">RECIPES</a></li>
+                        <li><a href="javascript:window.location.reload(true)">RECIPES</a></li>
                         <li><a href="#form">ADD A NEW RECIPE</a></li>
                     </ul>
 
-                    <input placeholder="SEARCH" type="text" ref={inputValueRefSearch}></input>
+                    <input id="searchBar" placeholder="SEARCH" type="text" ref={inputValueRefSearch}></input>
                     <button id="button" onClick={filterBySearch}>SEARCH</button>
                 </nav>
             </div>
@@ -90,11 +90,14 @@ const RecipeContainer = () => {
                 <label>Cake name: </label>
                 <input type="text" placeholder="Recipe Name" ref={inputValueRefCakeName}></input>
                 <br />
+                <br />
                 <label>Cake ingredients: </label>
                 <input type="text" placeholder="Recipe ingredients" ref={inputValueRefCakeIngredients}></input>
                 <br />
+                <br />
                 <label>Cake rating: </label>
                 <input type="text" placeholder="Recipe rating" ref={inputValueRefCakeRating}></input>
+                <br />
                 <br />
             </form>
             <NewRecipe handleButtonClick={addNewRecipe} />
